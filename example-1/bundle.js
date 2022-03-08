@@ -25,10 +25,35 @@
     }
   });
 
+  // noteView.js
+  var require_noteView = __commonJS({
+    "noteView.js"(exports, module) {
+      var NotesView2 = class {
+        constructor(notes) {
+          this.notes = notes;
+          this.mainContainerEl = document.querySelector("#main-container");
+        }
+        displayNotes() {
+          let noteArray = this.notes.getNotes();
+          noteArray.forEach((note) => {
+            let div2 = document.createElement("div");
+            div2.className = "note";
+            console.log(note);
+            this.mainContainerEl.append(note, div2);
+          });
+        }
+      };
+      module.exports = NotesView2;
+    }
+  });
+
   // index.js
   var NotesModel = require_notesModel();
+  var NotesView = require_noteView();
   console.log("The notes app in running!");
   var model = new NotesModel();
   model.addNote("Time for tea!");
   console.log(model.getNotes());
+  var view = new NotesView(model);
+  var div = view.displayNotes();
 })();

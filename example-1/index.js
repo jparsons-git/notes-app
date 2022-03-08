@@ -5,8 +5,12 @@
 // on Mac (using Chrome), use Option+Command+J to open the console and see this message.
 
 const NotesModel = require('./notesModel');
+const NotesView = require('./noteView');
 console.log('The notes app in running!');
 
 const model = new NotesModel;
 model.addNote('Time for tea!');
 console.log(model.getNotes());
+
+const view = new NotesView(model);
+const div = view.displayNotes();
